@@ -16,7 +16,8 @@ a {
     text-decoration: underline; }
 
 .btn {
-  display: inline-block;
+  //display: inline-block;
+  display: none;
   margin-bottom: 1rem;
   color: rgba(255, 255, 255, 0.7);
   background-color: rgba(255, 255, 255, 0.08);
@@ -45,7 +46,8 @@ a {
 
 @media screen and (max-width: 42em) {
   .btn {
-    display: block;
+    //display: block;
+    display: none;
     width: 100%;
     padding: 0.75rem;
     font-size: 0.9rem; }
@@ -56,8 +58,10 @@ a {
 .page-header {
   color: #fff;
   text-align: center;
-  background-color: #159957;
-  background-image: linear-gradient(120deg, #155799, #159957); }
+  //background-color: #159957;
+  //background-image: linear-gradient(120deg, #155799, #159957);
+  background-color: #2c3036;
+}
 
 @media screen and (min-width: 64em) {
   .page-header {
@@ -112,7 +116,7 @@ a {
   margin-top: 2rem;
   margin-bottom: 1rem;
   font-weight: normal;
-  color: #159957; }
+  color: #666; }
 .main-content p {
   margin-bottom: 1em; }
 .main-content code {
@@ -120,7 +124,8 @@ a {
   font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
   font-size: 0.9rem;
   color: #383e41;
-  background-color: #f3f6fa;
+  //background-color: #f3f6fa;
+  background-color: #f5f5f5;
   border-radius: 0.3rem; }
 .main-content pre {
   padding: 0.8rem;
@@ -129,8 +134,9 @@ a {
   font: 1rem Consolas, "Liberation Mono", Menlo, Courier, monospace;
   color: #567482;
   word-wrap: normal;
-  background-color: #f3f6fa;
-  border: solid 1px #dce6f0;
+  //background-color: #f3f6fa;
+  //border: solid 1px #dce6f0;
+  background-color: #f5f5f5;
   border-radius: 0.3rem; }
   .main-content pre > code {
     padding: 0;
@@ -230,6 +236,7 @@ a {
   font-weight: bold; }
 
 .site-footer-credits {
+  display: none;
   color: #819198; }
 
 @media screen and (min-width: 64em) {
