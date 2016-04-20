@@ -20,6 +20,17 @@
 
     <section class="main-content">
       <h2>
+<a id="table-of-contents" class="anchor" href="#table-of-contents" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Table of Contents</h2>
+
+<ol>
+<li><a href="#first-time-setup">First Time Setup</a></li>
+<li><a href="#repeat-use">Repeat Use</a></li>
+<li><a href="#common-issues">Common Issues</a></li>
+<li><a href="#development-workflow">Development Workflow</a></li>
+<li><a href="https://github.com/sellect/dev-kit/issues/new">Report Issue or Ask a Question</a></li>
+</ol>
+
+<h2>
 <a id="first-time-setup" class="anchor" href="#first-time-setup" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>First Time Setup</h2>
 
 <ol>
@@ -38,20 +49,7 @@
 
 <p>This will take some time the first time you run this command since the vagrant virtual machine(VM) is being created.</p>
 
-<p>Sometimes you may run into and error that looks like this:</p>
-
-<pre><code>A Docker command executed by Vagrant didn't complete successfully!
-The command run along with the output from the command is shown
-below.
-
-Command: "docker" "ps" "-a" "-q" "--no-trunc"
-
-Stderr: Cannot connect to the Docker daemon. Is the docker daemon running on this host?
-
-Stdout:
-</code></pre>
-
-<p>Just rerun the previous command and the build should continue.</p>
+<p>Sometimes you may run into errors. See common issues <a href="#common-issues">below</a>.</p>
 
 <p>Once the virtual machine is successfully built, run this command:</p>
 
@@ -88,7 +86,7 @@ Maximum connections set to 1024
 Listening on localhost:3000, CTRL+C to stop
 </code></pre>
 
-<p>This means your rails server is running and you can browse the website at http://localhost:3000 in your browser.</p>
+<p>This means your rails server is running and you can browse the website at <a href="http://localhost:3000">http://localhost:3000</a> in your browser.</p>
 
 <p>The webserver is running from a shared directory in your dev kit on your local machine. Any updates inside <code>/path/to/your/devkit/web</code> should be reflected upon refresh of your browser window.</p>
 
@@ -100,6 +98,48 @@ Listening on localhost:3000, CTRL+C to stop
 <li>Run either <code>vagrant up --provider=docker</code> or <code>vagrant reload</code> if the VM is already running</li>
 <li>Done</li>
 </ol>
+
+<h2>
+<a id="common-issues" class="anchor" href="#common-issues" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Common Issues</h2>
+
+<pre><code>A Docker command executed by Vagrant didn't complete successfully!
+The command run along with the output from the command is shown
+below.
+
+Command: "docker" "ps" "-a" "-q" "--no-trunc"
+
+Stderr: Cannot connect to the Docker daemon. Is the docker daemon running on this host?
+
+Stdout:
+</code></pre>
+
+<p><strong>solution</strong></p>
+
+<p>Just rerun the previous command and the build should continue.</p>
+
+<pre><code>The Docker provider was able to bring up the host VM successfully
+but the host VM is still reporting that SSH is unavailable. This
+sometimes happens with certain providers due to bugs in the
+underlying hypervisor, and can be fixed with a `vagrant reload`.
+The ID for the host VM is shown below for convenience.
+
+If this does not fix it, please verify that the host VM provider
+is functional and properly configured.
+
+Host VM ID: 4541a04b-1d6b-40e2-932a-5b10381582fe
+</code></pre>
+
+<p><strong>solution</strong></p>
+
+<pre><code>$ mv ~/.vagrant.d/insecure_private_key ~/Desktop/.
+</code></pre>
+
+<p>This moves your <code>insecure_private_key</code> for vagrant to your desktop for backup puroposes. This will force vagrant to regenerate a new <code>insecure_private_key</code>. If you successfully run vagrant you can remove the old key from your desktop.</p>
+
+<h2>
+<a id="development-workflow" class="anchor" href="#development-workflow" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Development Workflow</h2>
+
+<p>At Sellect we like to use <a href="https://github.com/nvie/gitflow">Git Flow</a> which provides a simple mechanism for creating organized branches based on the type of update being developed. If you are not familiar with Git Flow then the idea should always be to create a new branch based off of <code>develop</code> with a name indicative of what the branch aims to acheive. Once you create a branch, you should then create a pull request from your newly created branch to the <code>develop</code> branch. Once you create this pull request your work will be reviewed for code quality and will be deployed to the beta environment upon approval.</p>
 
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/sellect/dev-kit">Sellect Developer Kit</a> is maintained by <a href="https://github.com/sellect">sellect</a>.</span>
