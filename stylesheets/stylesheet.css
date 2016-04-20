@@ -236,6 +236,7 @@ a {
   font-weight: bold; }
 
 .site-footer-credits {
+  display: none;
   color: #819198; }
 
 @media screen and (min-width: 64em) {
