@@ -19,12 +19,87 @@
     </section>
 
     <section class="main-content">
-      <p>Below are are a useful list of instructions</p>
+      <h2>
+<a id="first-time-setup" class="anchor" href="#first-time-setup" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>First Time Setup</h2>
 
-<ul>
-<li><a href="">How to Setup Your Developer Kit</a></li>
-<li><a href="">Development Workflow</a></li>
-</ul>
+<ol>
+<li>
+<a href="https://www.vagrantup.com/downloads.html">Download</a> and install Vagrant</li>
+<li>
+<a href="https://www.virtualbox.org/wiki/Downloads">Download</a> and install VirtualBox</li>
+<li>Download the dev kit</li>
+<li>
+<a href="https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/">Add</a> ssh key provided with dev kit into your github user</li>
+<li>Run these commands in the dev kit directory:</li>
+</ol>
+
+<pre><code>$ vagrant up --provider=docker
+</code></pre>
+
+<p>This will take some time the first time you run this command since the vagrant virtual machine(VM) is being created.</p>
+
+<p>Sometimes you may run into and error that looks like this:</p>
+
+<pre><code>A Docker command executed by Vagrant didn't complete successfully!
+The command run along with the output from the command is shown
+below.
+
+Command: "docker" "ps" "-a" "-q" "--no-trunc"
+
+Stderr: Cannot connect to the Docker daemon. Is the docker daemon running on this host?
+
+Stdout:
+</code></pre>
+
+<p>Just rerun the previous command and the build should continue.</p>
+
+<p>Once the virtual machine is successfully built, run this command:</p>
+
+<pre><code>$ vagrant ssh
+</code></pre>
+
+<p>The output from this command should look something like this:</p>
+
+<pre><code>==&gt; default: SSH will be proxied through the Docker virtual machine since we're
+==&gt; default: not running Docker natively. This is just a notice, and not an error.
+Warning: Permanently added '172.17.0.2' (ECDSA) to the list of known hosts.
+Welcome to Ubuntu 14.04.4 LTS (GNU/Linux 3.13.0-85-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com/
+Last login: Tue Apr 19 20:54:37 2016 from 172.17.0.1
+vagrant@925303b734df:~/dev-kit$
+</code></pre>
+
+<p>You are now ssh'd into the vagrant VM. Run the following command to start the application:</p>
+
+<pre><code>vagrant@925303b734df:~/dev-kit$ ./run
+</code></pre>
+
+<p>This may take a little while as the bundle is installed and database is synced.</p>
+
+<p>If all goes well you should see something like this at the bottom of the output:</p>
+
+<pre><code>=&gt; Booting Thin
+=&gt; Rails 4.2.6 application starting in development on http://localhost:3000
+=&gt; Run `rails server -h` for more startup options
+=&gt; Ctrl-C to shutdown server
+Thin web server (v1.6.3 codename Protein Powder)
+Maximum connections set to 1024
+Listening on localhost:3000, CTRL+C to stop
+</code></pre>
+
+<p>This means your rails server is running and you can browse the website at http://localhost:3000 in your browser.</p>
+
+<p>The webserver is running from a shared directory in your dev kit on your local machine. Any updates inside <code>/path/to/your/devkit/web</code> should be reflected upon refresh of your browser window.</p>
+
+<h2>
+<a id="repeat-use" class="anchor" href="#repeat-use" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Repeat Use</h2>
+
+<ol>
+<li>Change directory to the directory of the devkit</li>
+<li>Run either <code>vagrant up --provider=docker</code> or <code>vagrant reload</code> if the VM is already running</li>
+<li>Done</li>
+</ol>
 
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/sellect/dev-kit">Sellect Developer Kit</a> is maintained by <a href="https://github.com/sellect">sellect</a>.</span>
